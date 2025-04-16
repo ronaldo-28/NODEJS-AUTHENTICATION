@@ -1,5 +1,6 @@
 // config/passport-google-oauth2-stretegy.js (or similar name)
 const passport = require("passport");
+require("dotenv").config();
 // Use require("passport-google-oauth20").Strategy for newer versions/consistency
 // but require("passport-google-oauth").OAuth2Strategy works too
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
