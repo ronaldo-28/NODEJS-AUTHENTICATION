@@ -1,0 +1,191 @@
+/* assets/css/layout.css */
+
+/* --- Base (Light) Theme --- */
+body {
+  background-color: #f8f9fa; /* Light background */
+  color: #212529; /* Dark text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.navbar {
+  background-color: #007bff; /* Primary blue */
+  transition: background-color 0.3s ease;
+}
+
+.navbar-brand,
+.navbar .user-info h3, /* Target h3 inside user-info */
+.navbar .logout-btn,
+.navbar .theme-toggle {
+  /* Style toggle button too */
+  color: #ffffff;
+}
+
+.logout-btn {
+  background-color: transparent; /* Make it look like a link */
+  border: 1px solid #ffffff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Slight hover effect */
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Style general elements if needed */
+.form-container,
+.signupContainer {
+  /* Target form wrappers */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input.inputFieldi,
+.form-group input {
+  /* Target specific inputs */
+  background-color: #ffffff;
+  color: #212529;
+  border: 1px solid #ced4da;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.btn {
+  /* General button styling */
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #ffffff;
+}
+.btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* --- Dark Theme --- */
+body.dark-theme {
+  background-color: #1a1a1a; /* Dark background */
+  color: #e0e0e0; /* Lighter text */
+}
+
+body.dark-theme .navbar {
+  background-color: #0056b3; /* Darker blue */
+}
+
+body.dark-theme .navbar-brand,
+body.dark-theme .navbar .user-info h3,
+body.dark-theme .navbar .logout-btn,
+body.dark-theme .navbar .theme-toggle {
+  color: #e0e0e0; /* Adjust navbar text color if needed */
+}
+
+body.dark-theme .logout-btn {
+  border-color: #e0e0e0;
+}
+body.dark-theme .logout-btn:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+  border-color: #e0e0e0;
+  color: #e0e0e0;
+}
+
+body.dark-theme .form-container,
+body.dark-theme .signupContainer {
+  background-color: #2c2c2c; /* Darker form background */
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+  border: 1px solid #444; /* Optional border */
+}
+
+body.dark-theme input.inputFieldi,
+body.dark-theme .form-group input {
+  background-color: #3a3a3a; /* Darker input background */
+  color: #e0e0e0; /* Light text in input */
+  border: 1px solid #555;
+}
+body.dark-theme input.inputFieldi::placeholder, /* Style placeholder text */
+body.dark-theme .form-group input::placeholder {
+  color: #aaa;
+}
+
+body.dark-theme .btn {
+  background-color: #0d6efd; /* Keep primary color or adjust */
+  border-color: #0d6efd;
+  color: #ffffff;
+}
+body.dark-theme .btn:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* Style links in dark theme */
+body.dark-theme a {
+  color: #6cb2eb; /* Lighter blue for links */
+}
+body.dark-theme a:hover {
+  color: #8ec9f5;
+}
+
+body.dark-theme .hr span {
+  /* Adjust the hr lines */
+  color: #555;
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem; /* Adjust icon size */
+  padding: 5px 10px; /* Add some padding */
+  margin-left: 15px; /* Space from user name/logout */
+  color: #ffffff; /* Match navbar text */
+  line-height: 1; /* Align icon vertically */
+}
+
+/* Hide one icon by default */
+.theme-toggle .fa-sun {
+  display: none;
+}
+
+/* Show the sun and hide the moon in dark mode */
+body.dark-theme .theme-toggle .fa-moon {
+  display: none;
+}
+
+body.dark-theme .theme-toggle .fa-sun {
+  display: inline; /* Or block, depending on layout */
+}
+
+/* --- Flash Message Styling (Optional improvements) --- */
+.flash-message {
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+.flash-message.success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+.flash-message.error {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+body.dark-theme .flash-message.success {
+  color: #75b798;
+  background-color: #153a2c;
+  border-color: #1c583f;
+}
+body.dark-theme .flash-message.error {
+  color: #ea868f;
+  background-color: #4a1a1f;
+  border-color: #812831;
+}

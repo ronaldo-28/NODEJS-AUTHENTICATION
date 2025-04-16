@@ -1,0 +1,91 @@
+<!-- views/login.ejs -->
+<link rel="stylesheet" href="/css/login.css" />
+
+<div class="signupContainer">
+  <!-- Assuming signupContainer is the main form wrapper -->
+  <h1 class="signupHeading">Login</h1>
+
+  <!-- Display Flash Messages -->
+  <% if (locals.flash && locals.flash.success && locals.flash.success.length >
+  0) { %>
+  <div
+    class="flash-message success"
+    style="
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid green;
+      color: green;
+      background-color: #e6ffed;
+    "
+  >
+    <%= locals.flash.success %>
+  </div>
+  <% } %> <% if (locals.flash && locals.flash.error && locals.flash.error.length
+  > 0) { %>
+  <div
+    class="flash-message error"
+    style="
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid red;
+      color: red;
+      background-color: #ffe6e6;
+    "
+  >
+    <%= locals.flash.error %>
+  </div>
+  <% } %>
+  <!-- End Flash Messages -->
+
+  <form action="/signin" method="post">
+    <!-- Form tag should wrap the inputs and submit button -->
+    <div class="inputField">
+      <input
+        class="inputFieldi"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+    </div>
+    <div class="inputField">
+      <input
+        class="inputFieldi"
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <div class="btncontainer">
+      <button class="btn" type="submit">Login</button>
+    </div>
+  </form>
+  <!-- Close the form tag -->
+
+  <div style="margin-top: 10px">
+    <p>Don't have an account? <a href="/">Signup</a></p>
+  </div>
+  <div class="form-links" style="margin-top: 10px; text-align: center">
+    <a href="/forgot-password">Forgot Password?</a>
+  </div>
+
+  <div class="hr">
+    <span class="span1">__________________</span>
+    <span class="spanor">Or</span>
+    <span class="span2">__________________</span>
+  </div>
+
+  <div class="btncontainer">
+    <div class="gbtn">
+      <img
+        class="gimg"
+        src="https://img.icons8.com/color/1x/google-logo.png"
+        alt="Google logo"
+      />
+      <a class="glink" href="/auth/google">Login with Google</a>
+    </div>
+  </div>
+</div>
+
+<!-- <%- include("./partial/messages"); %> -->

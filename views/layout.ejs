@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Dynamic Title (Optional but good practice) -->
+    <title><%= title ? title + " | " : "" %>Authentication</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+
+    <!-- Noty CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+      integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Layout Styles -->
+    <link rel="stylesheet" href="/css/layout.css" />
+
+    <!-- Page Specific Styles -->
+    <% if (locals.style) { %> <%- style %> <% } %>
+
+    <!-- Add script to apply theme ASAP to prevent flash (Optional but recommended) -->
+    <script>
+      (function () {
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme === "dark") {
+          document.documentElement.classList.add("dark-theme"); // Apply to <html>
+          document.body.classList.add("dark-theme"); // Also apply to body if needed early
+        }
+        // If 'light' or null, do nothing (default)
+      })();
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Authentication System</a>
+        <!-- Link to home -->
+
+        <!-- Group user info, logout, and theme toggle -->
+        <div class="ms-auto d-flex align-items-center">
+          <!-- Use flexbox for alignment -->
+          <% if(locals.user) { %>
+          <div class="user-info me-3">
+            <!-- Add margin-end -->
+            <span>Welcome, <%= user.name %></span>
+            <!-- Use span, h3 is too big here -->
+          </div>
+          <a href="/logout" class="btn logout-btn">Logout</a>
+          <% } %>
+
+          <!-- Theme Toggle Button -->
+          <button
+            class="theme-toggle"
+            id="theme-toggle-button"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+            <!-- Moon icon (default) -->
+            <i class="fas fa-sun"></i>
+            <!-- Sun icon (hidden by default) -->
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Inject Page Body -->
+    <main class="container mt-4">
+      <!-- Add container and margin -->
+      <%- body %>
+    </main>
+
+    <!-- Noty Flash Messages Partial -->
+    <!-- Make sure the path to messages.ejs is correct -->
+    <%- include("./partial/messages"); %>
+
+    <!-- Bootstrap JS (Keep if needed for Bootstrap components) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-KiFp9nhoIckfLCMyfBXAcqjn6GrYhJxlHiv1FDF0JAE8lHoeaRVYRau7X02fRWd9"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Noty JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+      integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeToggleButton = document.getElementById(
+          "theme-toggle-button"
+        );
+        // Check if the button exists before adding listener
+        if (themeToggleButton) {
+          const bodyElement = document.body;
+          const htmlElement = document.documentElement; // Target <html> as well
+
+          // Function to apply theme based on preference
+          function applyTheme(theme) {
+            if (theme === "dark") {
+              bodyElement.classList.add("dark-theme");
+              htmlElement.classList.add("dark-theme"); // Apply to html too
+            } else {
+              bodyElement.classList.remove("dark-theme");
+              htmlElement.classList.remove("dark-theme");
+            }
+          }
+
+          // Check initial theme preference from localStorage
+          const currentTheme = localStorage.getItem("theme");
+          // Apply theme on load (redundant if head script exists, but safe)
+          if (currentTheme) {
+            applyTheme(currentTheme);
+          }
+
+          // Add click listener to the toggle button
+          themeToggleButton.addEventListener("click", () => {
+            let newTheme;
+            // Check current state by class on body
+            if (bodyElement.classList.contains("dark-theme")) {
+              newTheme = "light";
+            } else {
+              newTheme = "dark";
+            }
+            // Apply the new theme
+            applyTheme(newTheme);
+            // Save the preference to localStorage
+            localStorage.setItem("theme", newTheme);
+          });
+        } else {
+          console.warn("Theme toggle button not found on this page.");
+        }
+      });
+    </script>
+
+    <!-- Page Specific Scripts -->
+    <% if (locals.script) { %> <%- script %> <% } %>
+  </body>
+</html>

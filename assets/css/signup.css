@@ -1,0 +1,80 @@
+/* Add your existing CSS rules here */
+
+/* Additional CSS for styling the form with a gray theme */
+.signupContainer {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signupHeading {
+    text-align: center;
+    color: #333;
+  }
+  
+  .inputField {
+    margin-bottom: 15px;
+  }
+  
+  .inputFieldi {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btncontainer {
+    text-align: center;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #333;
+  }
+  
+  .p {
+    text-align: center;
+    color: #777;
+  }
+  
+  .hr {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .span1,
+  .span2 {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .spanor {
+    margin: 0 10px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .gbtn {
+    text-align: center;
+  }
+  
+  .gimg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
